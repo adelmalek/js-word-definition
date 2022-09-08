@@ -4,13 +4,33 @@ let form = document.querySelector(".js-form");
 let inputField = document.querySelector("[name=word]");
 let results = document.querySelector(".js-results");
 
-function renderMeanings() {
-    return "def"
+
+function renderDefinitions(definitions) {
+    let html = "";
+    let example = "";
+    for (let definition of definitions) {
+        if (typeof definition.example === "string") {
+            example = `(e.g. ${definition.example})`
+        }
+        html += `<li>${definition.definition} ${example}</li>`
+    }
+    return html;
+}
+
+function renderMeanings(meanings) {
+    let html = "";
+    for (let meaning of meanings) {
+        html += `
+            <p>${meaning.partOfSpeech}</p>
+            <ol>${renderDefinitions(meaning.definitions)}</ol>
+        `
+    }
+    return html;
 }
 
 function renderDatas(datas) {
     let html = `<h2>${datas.word} ${datas.phonetic}</h2>`;
-    renderMeanings(datas.meanings);
+    html += renderMeanings(datas.meanings);
     return html;
 }
 
