@@ -18,7 +18,7 @@ function renderDefinitions(definitions) {
 }
 
 function renderSynonyms(synonyms) {
-    return synonyms.map(text => `<a href="# data-text="${text}">${text}</a>`).join(", ");
+    return synonyms.map(text => `<a href="#" data-text="${text}">${text}</a>`).join(", ");
 }
 
 function renderMeanings(meanings) {
@@ -38,7 +38,11 @@ function renderMeanings(meanings) {
 }
 
 function renderDatas(datas) {
-    let html = `<h2>${datas.word} ${datas.phonetic}</h2>`;
+    let phonetic = "";
+    if (typeof datas.phonetic === "string") {
+        phonetic = datas.phonetic;
+    }
+    let html = `<h2>${datas.word} ${phonetic}</h2>`;
     html += renderMeanings(datas.meanings);
     return html;
 }
@@ -53,14 +57,26 @@ function renderResults(datas) {
     return results.innerHTML = html;
 }
 
-function getResults(event) {
-    event.preventDefault();
-    let word = inputField.value.trim();
-    inputField.value = "";
+function fetchWord(word) {
     fetch(API_KEY + word)
         .then(res => res.json())
         .then(renderResults)
         .catch(error => console.log(error))
 }
 
+function getResults(event) {
+    event.preventDefault();
+    let word = inputField.value.trim();
+    inputField.value = "";
+    fetchWord(word);
+}
+
 form.addEventListener("submit", getResults)
+
+function navigationWord(event) {
+    event.preventDefault();
+    let word = event.target.dataset.text;
+    fetchWord(word);
+}
+
+results.addEventListener("click", navigationWord)
