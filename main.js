@@ -37,12 +37,25 @@ function renderMeanings(meanings) {
     return html;
 }
 
+function renderAudio(phonetics) {
+    if (phonetics.audio !== "") {
+        return `
+            <audio controls>
+                <source src="${phonetics.audio}" type="audio/ogg">
+                <source src="${phonetics.audio}" type="audio/mpeg">
+            </audio>
+        `
+    } else {
+        return "";
+    }
+}
+
 function renderDatas(datas) {
     let phonetic = "";
     if (typeof datas.phonetic === "string") {
         phonetic = datas.phonetic;
     }
-    let html = `<h2>${datas.word} ${phonetic}</h2>`;
+    let html = `<h2>${datas.word} ${phonetic}</h2> ${renderAudio(datas.phonetics[0])}`;
     html += renderMeanings(datas.meanings);
     return html;
 }
