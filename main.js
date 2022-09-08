@@ -17,12 +17,21 @@ function renderDefinitions(definitions) {
     return html;
 }
 
+function renderSynonyms(synonyms) {
+    return synonyms.map(text => `<a href="# data-text="${text}">${text}</a>`).join(", ");
+}
+
 function renderMeanings(meanings) {
     let html = "";
     for (let meaning of meanings) {
+        let synonyms = "";
+        if (Array.isArray(meaning.synonyms) && meaning.synonyms.length > 0) {
+            synonyms = `<p> Synonyms: ${renderSynonyms(meaning.synonyms)}</p>`
+        }
         html += `
             <p>${meaning.partOfSpeech}</p>
             <ol>${renderDefinitions(meaning.definitions)}</ol>
+            ${synonyms}
         `
     }
     return html;
