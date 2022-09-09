@@ -3,4 +3,4 @@
 - A simple application that displays the definition and pronunciation of the requested word.
 - I used API call.
 
-Link:
+Link: https://adelmalek.github.io/js-word-definition/
