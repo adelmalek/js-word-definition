@@ -12,13 +12,13 @@ function renderDefinitions(definitions) {
         if (typeof definition.example === "string") {
             example = `(e.g. ${definition.example})`
         }
-        html += `<li>${definition.definition} ${example}</li>`
+        html += `<li class="definitions">${definition.definition} <span class="eg">${example}</span></li>`
     }
     return html;
 }
 
 function renderSynonyms(synonyms) {
-    return synonyms.map(text => `<a href="#" data-text="${text}">${text}</a>`).join(", ");
+    return synonyms.map(text => `<a href="#" data-text="${text}" class="link">${text}</a>`).join(", ");
 }
 
 function renderMeanings(meanings) {
@@ -26,10 +26,10 @@ function renderMeanings(meanings) {
     for (let meaning of meanings) {
         let synonyms = "";
         if (Array.isArray(meaning.synonyms) && meaning.synonyms.length > 0) {
-            synonyms = `<p> Synonyms: ${renderSynonyms(meaning.synonyms)}</p>`
+            synonyms = `<p class="synonyms"> Synonyms: ${renderSynonyms(meaning.synonyms)}</p>`
         }
         html += `
-            <p>${meaning.partOfSpeech}</p>
+            <p class="partofspeech">${meaning.partOfSpeech}</p>
             <ol>${renderDefinitions(meaning.definitions)}</ol>
             ${synonyms}
         `
@@ -40,7 +40,7 @@ function renderMeanings(meanings) {
 function renderAudio(phonetics) {
     if (phonetics.audio !== "") {
         return `
-            <audio controls>
+            <audio controls class="audio">
                 <source src="${phonetics.audio}" type="audio/ogg">
                 <source src="${phonetics.audio}" type="audio/mpeg">
             </audio>
@@ -55,7 +55,7 @@ function renderDatas(datas) {
     if (typeof datas.phonetic === "string") {
         phonetic = datas.phonetic;
     }
-    let html = `<h2>${datas.word} ${phonetic}</h2> ${renderAudio(datas.phonetics[0])}`;
+    let html = `<h2 class="s-word">${datas.word} ${phonetic}</h2> ${renderAudio(datas.phonetics[0])}`;
     html += renderMeanings(datas.meanings);
     return html;
 }

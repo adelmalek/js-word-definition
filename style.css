@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
-/*360px*/
+@import url('https://fonts.googleapis.com/css2?family=Rampart+One&display=swap');
 
 * {
     margin: 0;
@@ -9,10 +8,26 @@
     font-family: 'Roboto', sans-serif;
 }
 
+body {
+    background-color: #e0e0e0;
+}
+
 h1 {
     letter-spacing: 0.1rem;
     text-align: center;
     margin: 1rem;
+    font-family: 'Rampart One', cursive;
+    font-size: 2.5rem;
+    background: #ddc004;
+    background: linear-gradient(to right, #ddc004 0%, #CD114A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.word {
+    color: #d61927;
+    font-size: 1.2rem;
+    font-weight: 700;
 }
 
 .form {
@@ -27,19 +42,67 @@ h1 {
 
 .input {
     margin: 0.5rem;
-    padding: 0.2rem;
+    padding: 0.4rem;
     outline: none;
     border: none;
     box-shadow: 0 0 2px grey;
     font-size: 1rem;
+    line-height: 1.5rem;
+    border-radius: 0.5rem;
 }
 
 .btn {
     font-family: 'Roboto', sans-serif;
     cursor: pointer;
-    margin: 0.5rem;
-    padding: 0.4rem 0.2rem;
-    font-size: 0.8rem;
+    margin: 1rem;
+    padding: 0.6rem 0.4rem;
+    font-size: 0.9rem;
     font-weight: 600;
+    letter-spacing: 0.1rem;
+    background: rgb(213,131,41);
+    background: linear-gradient(90deg, rgba(213,131,41,1) 4%, rgba(184,17,126,1) 36%);
+    border: none;
+    color: white;
+    border-radius: 0.5rem;
+}
+
+.btn:hover {
+    box-shadow: 2px 2px 2px rgb(27, 27, 27);
+}
+
+.error {
+    color: #d61927;
+    text-align: center;
+}
+
+.s-word {
+    margin: 1rem;
+}
+
+.audio {
+    margin: 0 0 2rem 1rem;
+}
+
+.partofspeech {
+    margin: 2rem 0 1rem 1rem;
+    font-weight: 700;
+}
+
+.definitions {
+    padding: 1rem;
+}
+
+.eg {
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.synonyms {
+    margin: 1rem;
+}
+
+.link {
+    outline: none;
+    color: #b8117e;
     letter-spacing: 0.1rem;
 }
